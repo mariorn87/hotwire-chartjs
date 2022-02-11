@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function print_help {
+  cat <<HELP
+./run.sh dev <command> <arguments>
+
+commands:
+  - sh: run shell
+  - console: run rails console
+  - server: run dev server
+  - setup: run rake db:create && rake db:migrate
+  - migrate: run rails db:migrate
+
+server:
+  options:
+    -d  daemon mode
+HELP
+}
+
+function docker_wrapper {
+  docker-compose -f docker-compose.yml $@
+}
+
+function run_in_docker {
+  docker_wrapper run --rm web $@
+}
+
+case "$1" in
+  sh) run_in_docker /bin/bash;;
+  console) run_in_docker rails c;;
+  server) shift; docker_wrapper up $@;;
+  setup) run_in_docker rake db:create && run_in_docker rake db:migrate;;
+  migrate) run_in_docker rails db:migrate;;
+  help) print_help; exit 0;;
+  *) print_help; exit 1;;
+esac
