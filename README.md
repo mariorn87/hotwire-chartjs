@@ -1,24 +1,17 @@
-# README
+# Rails + Hotwire + Chartjs
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The only goal of this project is to practice with the latest versions of Rails and Ruby, and to do some proof of concepts with Hotwire and metrics visualization with Chartjs
 
-Things you may want to cover:
+## Prerequisites:
 
-* Ruby version
+- [Docker](https://docs.docker.com/get-docker/)
 
-* System dependencies
+## How to use:
 
-* Configuration
+1. Clone this repo
+1. Build the project image with `./run.sh build`
+1. Project setup with `./run.sh setup`
+1. Server initialization with `./run.sh dev server`
+1. Go to [localhost:3000](localhost:3000)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You are now good ready to go!! 👯
