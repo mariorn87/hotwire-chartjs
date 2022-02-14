@@ -11,6 +11,7 @@ The only goal of this project is to practice with the latest versions of Rails a
 1. Clone this repo
 1. Build the project image with `./run.sh build`
 1. Project setup with `./run.sh setup`
+1. Build assets `yarn build`
 1. Server initialization with `./run.sh dev server`
 1. Go to [localhost:3000](localhost:3000)
 
