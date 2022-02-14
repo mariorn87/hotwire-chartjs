@@ -1,0 +1,8 @@
+  <%= render partial: "chart_per_day", locals: { data_per_day: @presenter.data_per_period('day') } %>
+  <%= render partial: "chart_per_hour", locals: { data_per_hour: @presenter.data_per_period('hour') } %>
+  <%= render partial: "chart_per_minute", locals: { data_per_minute: @presenter.data_per_period('minute') } %>
+  <%= render partial: "chart" %>
+
+  <div class="bg-white p-4 rounded-md mt-4">
+    <%= render "form", event: Event.new %>
+  </div>

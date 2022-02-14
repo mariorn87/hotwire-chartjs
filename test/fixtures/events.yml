@@ -3,9 +3,9 @@
 one:
   name: MyString
   value: 1.5
-  timestamp: 2022-02-11 17:48:12
+  datetime: 2022-02-11 17:48:12
 
 two:
   name: MyString
   value: 1.5
-  timestamp: 2022-02-11 17:48:12
+  datetime: 2022-02-11 17:48:12

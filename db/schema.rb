@@ -15,11 +15,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_11_164812) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.float "value"
-    t.datetime "timestamp", precision: nil
+    t.string "name", null: false
+    t.float "value", null: false
+    t.datetime "datetime", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["datetime"], name: "index_events_on_datetime"
+    t.index ["name"], name: "index_events_on_name"
   end
 
 end

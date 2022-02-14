@@ -1,0 +1,4 @@
+<%= turbo_stream.replace 'data-per-day', partial: 'chart_per_day', locals: { data_per_day: @presenter.data_per_period('day') } %>
+<%= turbo_stream.replace 'data-per-hour', partial: 'chart_per_hour', locals: { data_per_hour: @presenter.data_per_period('hour') } %>
+<%= turbo_stream.replace 'data-per-minute', partial: 'chart_per_minute', locals: { data_per_minute: @presenter.data_per_period('minute') } %>
+<%= turbo_stream.replace 'chart', partial: 'chart' %>

@@ -11,6 +11,11 @@ module HotwireChartjs
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # load paths for domain directory
+    config.paths.add File.join('app', 'builders')
+    config.autoload_paths += Dir[Rails.root.join('app', 'builders')]
+    # config.eager_load_paths += Dir[Rails.root.join('app', 'builders')]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
