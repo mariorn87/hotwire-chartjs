@@ -1,9 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 import getRandomColor from '../utils'
-import { options, scalesPerDay, scalesPerHour, scalesPerMinute } from '../constants/chartOptions'
+import { optionsPerDay, optionsPerHour, optionsPerMinute } from '../constants/chartOptions'
 
 export default class extends Controller {
   static targets = ['chartPerDays','chartPerHours','chartPerMinutes']
+  // Don't look at me, it's a transitional decision 🙈
+  colors = {}
 
   canvasPerDaysContext() { return this.chartPerDaysTarget.getContext('2d'); }
   canvasPerHoursContext() { return this.chartPerHoursTarget.getContext('2d'); }
@@ -12,25 +14,26 @@ export default class extends Controller {
   connect() {
     new Chart(this.canvasPerDaysContext(), {
       type: 'line',
-      data: {        
-        datasets: this.datasets(this.dataPerDay())
-      },
-      options: {...options, scales: {...scalesPerDay } }
+      data: { datasets: this.datasets(this.dataPerDay()) },
+      options: optionsPerDay
     })
     new Chart(this.canvasPerHoursContext(), {
       type: 'line',
-      data: {        
-        datasets: this.datasets(this.dataPerHour())
-      },
-      options: {...options, scales: {...scalesPerHour } } 
+      data: { datasets: this.datasets(this.dataPerHour()) },
+      options: optionsPerHour
     })
     new Chart(this.canvasPerMinutesContext(), {
       type: 'line',
-      data: {        
-        datasets: this.datasets(this.dataPerMinute())
-      },
-      options: {...options, scales: {...scalesPerMinute } } 
+      data: { datasets: this.datasets(this.dataPerMinute()) },
+      options: optionsPerMinute
     })
+  }
+
+  getColorFor(eventName) {
+    if (eventName in this.colors) return this.colors[eventName]
+
+    this.colors[eventName] = getRandomColor()
+    return this.colors[eventName]
   }
 
   dataPerDay() {
@@ -46,10 +49,9 @@ export default class extends Controller {
   datasets(events) {
     return events.map(event => {
       const parsedData = event.data.map(eventData => {
-        return { x: new Date(eventData.x) , y: eventData.y }
+        return { ...eventData }
       })
-
-      const color = getRandomColor()
+      const color = this.getColorFor(event.name)
       return {
         label: event.name,
         borderColor: color,
