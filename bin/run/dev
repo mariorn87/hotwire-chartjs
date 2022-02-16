@@ -29,7 +29,7 @@ case "$1" in
   sh) run_in_docker /bin/bash;;
   console) run_in_docker rails c;;
   server) shift; docker_wrapper up $@;;
-  setup) run_in_docker rake db:create && run_in_docker rake db:migrate;;
+  setup) run_in_docker rake db:create && run_in_docker rake db:migrate && run_in_docker yarn build;;
   migrate) run_in_docker rails db:migrate;;
   help) print_help; exit 0;;
   *) print_help; exit 1;;
