@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import MetricController from "./metric_controller.js"
 application.register("metric", MetricController)
+
+import FormController from "./form_controller.js"
+application.register("form", FormController)

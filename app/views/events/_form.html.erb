@@ -3,6 +3,7 @@
   <%= form_with(
     model: event, 
     id: 'form',
+    data: { controller: "form", action: "turbo:submit-end->form#reset" }
   ) do |form| %>
     <div class="my-5">
       <%= form.label :name %>
